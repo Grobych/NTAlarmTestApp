@@ -8,12 +8,13 @@ compose-material = "1.10.0"
 compose-material3 = "1.1.2"
 compose-ui = "1.5.4"
 coreKtx = "1.12.0"
-dagger = "2.46.1"
+dagger = "2.48"
 gson = "2.9.0"
 junit = "4.13.2"
 kotlin-coroutines = "1.7.1"
 lifecycle = "2.6.2"
 lifecycleRuntimeKtx = "2.6.2"
+location = "21.0.1"
 mockk = "1.13.5"
 navigation = "2.7.5"
 navigation-hilt = "1.1.0"
@@ -94,6 +95,9 @@ gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref
 # Coil
 coil = { module = "io.coil-kt:coil", version.ref = "coil"}
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil"}
+
+# Location
+location = { module = "com.google.android.gms:play-services-location", version.ref = "location"}
 
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }

@@ -17,3 +17,4 @@ rootProject.name = "NTAlarmTestApp"
 include(":app")
 include(":common")
 include(":database")
+include(":data:location")

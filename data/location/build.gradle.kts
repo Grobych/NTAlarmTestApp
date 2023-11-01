@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    namespace = "com.globa.ntalarmtestapp.common"
-    compileSdk = 34
+    namespace = "com.globa.ntalarmtestapp.location"
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 24
@@ -31,18 +31,13 @@ android {
     kotlin {
         jvmToolchain(17)
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.compose.material3)
+    implementation(project(path = ":common"))
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.location)
 }

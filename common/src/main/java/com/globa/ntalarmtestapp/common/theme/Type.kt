@@ -1,4 +1,4 @@
-package com.globa.ntalarmtestapp.ui.theme
+package com.globa.ntalarmtestapp.common.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

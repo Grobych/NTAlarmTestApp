@@ -1,4 +1,4 @@
-package com.globa.ntalarmtestapp.ui.theme
+package com.globa.ntalarmtestapp.common.theme
 
 import android.app.Activity
 import android.os.Build

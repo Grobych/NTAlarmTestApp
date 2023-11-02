@@ -1,6 +1,5 @@
 package com.globa.ntalarmtestapp.database.api.dao
 
-import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PhotosDao {
     @Query("select * from photos order by date asc")
-    fun getPhotos(): PagingSource<Int, PhotoDBModel>
+    fun getPhotos(): Flow<List<PhotoDBModel>>
     @Query("select * from photos where id = :id")
     fun getPhotoById(id: Int): Flow<PhotoDBModel>
     @Insert(onConflict = OnConflictStrategy.REPLACE)

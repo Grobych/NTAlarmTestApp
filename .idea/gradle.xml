@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/location" />
+            <option value="$PROJECT_DIR$/data/photodetails" />
             <option value="$PROJECT_DIR$/data/photos" />
             <option value="$PROJECT_DIR$/database" />
           </set>

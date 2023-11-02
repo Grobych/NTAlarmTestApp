@@ -15,11 +15,7 @@ interface PhotosDao {
     @Query("select * from photos where id = :id")
     fun getPhotoById(id: Int): Flow<PhotoDBModel>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(photo : List<PhotoDBModel>)
+    fun insertPhoto(photo: PhotoDBModel)
     @Delete
     fun removePhoto(photo: PhotoDBModel)
-    @Query("DELETE FROM photos")
-    fun clearAll()
-    @Query("select MAX(date) from photos")
-    fun getLastUpdated(): Long
 }

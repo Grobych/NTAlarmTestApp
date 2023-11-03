@@ -15,6 +15,8 @@ kotlin-coroutines = "1.7.1"
 lifecycle = "2.6.2"
 lifecycleRuntimeKtx = "2.6.2"
 location = "21.0.1"
+maps = "18.2.0"
+maps-compose = "2.7.2"
 mockk = "1.13.5"
 navigation = "2.7.5"
 navigation-hilt = "1.1.0"
@@ -31,6 +33,9 @@ espresso-core = "3.5.1"
 appcompat = "1.6.1"
 
 [libraries]
+
+# Accompanist
+accompanist = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist"}
 
 # Compose
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -99,6 +104,10 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil"}
 # Location
 location = { module = "com.google.android.gms:play-services-location", version.ref = "location"}
 
+# Maps
+maps = { module = "com.google.android.gms:play-services-maps" , version.ref = "maps"}
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps-compose" }
+
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -110,3 +119,4 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 [bundles]
 navigation = ["navigation-android","navigation-hilt"]
 coil = ["coil", "coil-compose"]
+maps = ["maps", "maps-compose"]

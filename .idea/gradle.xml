@@ -16,9 +16,11 @@
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/location" />
             <option value="$PROJECT_DIR$/data/photodetails" />
+            <option value="$PROJECT_DIR$/data/photolocations" />
             <option value="$PROJECT_DIR$/data/photos" />
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/map" />
             <option value="$PROJECT_DIR$/feature/photos" />
           </set>
         </option>

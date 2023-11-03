@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.globa.ntalarmtestapp.common"
+    namespace = "com.globa.ntalarmtestapp.photolocations"
     compileSdk = 34
 
     defaultConfig {
@@ -31,20 +31,14 @@ android {
     kotlin {
         jvmToolchain(17)
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.compose.material3)
-
-    implementation(libs.accompanist)
+    implementation(project(path = ":common"))
+    implementation(project(path = ":database"))
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.room)
 }

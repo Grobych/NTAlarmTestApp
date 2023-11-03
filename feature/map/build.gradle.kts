@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.globa.ntalarmtestapp.common"
+    namespace = "com.globa.ntalarmtestapp.map"
     compileSdk = 34
 
     defaultConfig {
@@ -35,16 +35,31 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.4"
     }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.compose.material3)
 
-    implementation(libs.accompanist)
+    implementation(project(path = ":data:photos"))
+    implementation(project(path = ":data:photolocations"))
+    implementation(project(path = ":data:location"))
+    implementation(project(path = ":common"))
+
+    implementation(libs.bundles.maps)
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.lifecycle.viewmodel)
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
+
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
+    implementation(libs.compose.material3)
+
+    implementation(libs.bundles.navigation)
+
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
 }

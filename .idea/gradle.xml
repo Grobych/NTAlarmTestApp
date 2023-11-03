@@ -18,6 +18,8 @@
             <option value="$PROJECT_DIR$/data/photodetails" />
             <option value="$PROJECT_DIR$/data/photos" />
             <option value="$PROJECT_DIR$/database" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/photos" />
           </set>
         </option>
       </GradleProjectSettings>

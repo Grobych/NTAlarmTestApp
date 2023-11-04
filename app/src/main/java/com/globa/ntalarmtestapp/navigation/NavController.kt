@@ -14,6 +14,7 @@ import androidx.navigation.navArgument
 import com.globa.ntalarmtestapp.common.ui.composable.Footer
 import com.globa.ntalarmtestapp.map.MapScreen
 import com.globa.ntalarmtestapp.photos.PhotoListScreen
+import com.globa.ntararmtestapp.camera.CameraScreen
 
 @Composable
 fun NavController(
@@ -36,6 +37,8 @@ fun NavController(
     }
     val navigateToDetails = fun(id: Int) {
         navController.navigate(Routes.PhotoDetails.name + "photoId=$id")
+    }
+    val navigateToBack = fun() {
         navController.popBackStack()
     }
 
@@ -46,10 +49,10 @@ fun NavController(
                     onFooterItemClick(1)
                     navigateToList() },
                 onMapClick = {
-                    onFooterItemClick(2)
+                    onFooterItemClick(3)
                     navigateToMap() },
                 onCameraClick = {
-                    onFooterItemClick(3)
+                    onFooterItemClick(2)
                     navigateToCamera() },
                 selected = selected.value
             )
@@ -74,7 +77,9 @@ fun NavController(
             composable(
                 route = Routes.AddPhoto.name
             ) {
-                // Add Photo Screen
+                CameraScreen(
+                    onBackButtonClick = navigateToBack
+                )
             }
             composable(
                 route = "${Routes.ChooseFolder.name}?=currentPath={currentPath}", // use default/saved???

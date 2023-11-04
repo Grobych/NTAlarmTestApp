@@ -1,26 +1,18 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.globa.ntalarmtestapp"
+    namespace = "com.globa.ntararmtestapp.camera"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.globa.ntalarmtestapp"
         minSdk = 24
-        //noinspection EditedTargetSdkVersion
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,10 +25,6 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -47,29 +35,31 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+        kotlinCompilerExtensionVersion = "1.4.4"
     }
 }
 
 dependencies {
+    implementation(project(path = ":data:photodetails"))
+    implementation(project(path = ":data:location"))
     implementation(project(path = ":common"))
-    implementation(project(path = ":feature:map"))
-    implementation(project(path = ":feature:photos"))
-    implementation(project(path = ":feature:camera"))
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.lifecycle.viewmodel)
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.bundles.navigation)
-
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     implementation(libs.compose.material3)
+
+    implementation(libs.bundles.navigation)
+
+    implementation(libs.bundles.coil)
+
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
+
+    implementation(libs.document.file)
 }

@@ -47,4 +47,7 @@ dependencies {
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
 }

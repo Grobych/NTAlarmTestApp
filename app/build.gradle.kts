@@ -58,6 +58,8 @@ android {
 
 dependencies {
     implementation(project(path = ":common"))
+    implementation(project(path = ":feature:map"))
+    implementation(project(path = ":feature:photos"))
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
@@ -65,4 +67,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.bundles.navigation)
+
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
+    implementation(libs.compose.material3)
 }

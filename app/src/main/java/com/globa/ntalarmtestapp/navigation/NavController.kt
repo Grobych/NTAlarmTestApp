@@ -93,7 +93,7 @@ fun NavController(
             composable(
                 route = Routes.Map.name
             ) {
-                MapScreen(onMarkerCLick = { TODO() })
+                MapScreen(onMarkerCLick = navigateToDetails)
             }
         }
     }

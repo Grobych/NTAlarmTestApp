@@ -39,6 +39,7 @@ import androidx.core.content.FileProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.globa.ntalarmtestapp.common.theme.NTAlarmTestAppTheme
 import com.globa.ntalarmtestapp.common.ui.Paddings
+import com.globa.ntalarmtestapp.common.ui.composable.BaseHeader
 import com.globa.ntalarmtestapp.common.ui.composable.CameraPermission
 import com.globa.ntalarmtestapp.common.ui.composable.ErrorComposable
 import com.globa.ntalarmtestapp.common.ui.composable.LocationPermissions
@@ -55,7 +56,7 @@ fun CameraScreen(
         CameraPermission {
             Scaffold(
                 topBar = {
-                    // TODO: Header
+                    BaseHeader(text = "Add photo")
                 }
             ) {
                 CameraScreenContent(

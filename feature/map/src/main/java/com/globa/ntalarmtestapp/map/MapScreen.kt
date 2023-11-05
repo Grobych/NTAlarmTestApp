@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.globa.ntalarmtestapp.common.ui.composable.BaseHeader
 import com.globa.ntalarmtestapp.common.ui.composable.LocationPermissions
 import com.globa.ntalarmtestapp.photolocations.api.PhotoLocation
 import com.google.android.gms.maps.model.LatLng
@@ -23,7 +24,7 @@ fun MapScreen(
 ) {
     Scaffold(
         topBar = {
-            //TODO: Header
+            BaseHeader(text = "Map")
         }
     ) {
         LocationPermissions {

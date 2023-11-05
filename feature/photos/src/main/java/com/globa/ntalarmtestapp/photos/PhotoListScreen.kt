@@ -28,6 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.SubcomposeAsyncImage
 import com.globa.ntalarmtestapp.common.theme.NTAlarmTestAppTheme
 import com.globa.ntalarmtestapp.common.ui.Paddings
+import com.globa.ntalarmtestapp.common.ui.composable.BaseHeader
 import com.globa.ntalarmtestapp.common.util.DateFormatter
 import com.globa.ntalarmtestapp.photos.api.Photo
 
@@ -40,7 +41,9 @@ fun PhotoListScreen(
 
     Scaffold(
         topBar = {
-            //TODO: Header
+            BaseHeader(
+                text = "Photos"
+            )
         }
     ) {
         when (val state = uiState.value) {

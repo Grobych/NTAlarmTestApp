@@ -60,6 +60,12 @@ fun PhotoDetailsScreen(
                 Button(onClick = { viewModel.onRemoveDecline() }) {
                     Text(text = "Cancel")
                 }
+            },
+            title = {
+                Text(text = "Confirm file removing")
+            },
+            text = {
+                Text(text = "Are you sure to delete this photo from database?")
             }
         )
     }

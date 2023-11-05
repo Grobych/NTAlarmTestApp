@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.globa.ntalarmtestapp.common.ui.composable.Footer
+import com.globa.ntalarmtestapp.details.PhotoDetailsScreen
 import com.globa.ntalarmtestapp.map.MapScreen
 import com.globa.ntalarmtestapp.photos.PhotoListScreen
 import com.globa.ntararmtestapp.camera.CameraScreen
@@ -36,7 +37,7 @@ fun NavController(
         navController.navigate(Routes.Map.name)
     }
     val navigateToDetails = fun(id: Int) {
-        navController.navigate(Routes.PhotoDetails.name + "photoId=$id")
+        navController.navigate(Routes.PhotoDetails.name + "?photoId=$id")
     }
     val navigateToBack = fun() {
         navController.popBackStack()
@@ -66,13 +67,15 @@ fun NavController(
             composable(
                 route = Routes.PhotoList.name
             ) {
-                PhotoListScreen(onPhotoClick = { TODO() })
+                PhotoListScreen(onPhotoClick = navigateToDetails)
             }
             composable(
                 route = "${Routes.PhotoDetails}?photoId={photoId}",
                 arguments = listOf(navArgument("photoId") { type = NavType.IntType })
             ) {
-                //Photo Details Screen
+                PhotoDetailsScreen(
+                    onBackButtonClick = navigateToBack
+                )
             }
             composable(
                 route = Routes.AddPhoto.name

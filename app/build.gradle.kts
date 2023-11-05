@@ -61,6 +61,7 @@ dependencies {
     implementation(project(path = ":feature:map"))
     implementation(project(path = ":feature:photos"))
     implementation(project(path = ":feature:camera"))
+    implementation(project(path = ":feature:details"))
 
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)

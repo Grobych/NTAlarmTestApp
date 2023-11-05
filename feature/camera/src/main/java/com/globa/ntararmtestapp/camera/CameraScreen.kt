@@ -40,6 +40,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.globa.ntalarmtestapp.common.theme.NTAlarmTestAppTheme
 import com.globa.ntalarmtestapp.common.ui.Paddings
 import com.globa.ntalarmtestapp.common.ui.composable.CameraPermission
+import com.globa.ntalarmtestapp.common.ui.composable.ErrorComposable
 import com.globa.ntalarmtestapp.common.ui.composable.LocationPermissions
 import com.globa.ntalarmtestapp.common.util.DateFormatter
 import com.globa.ntalarmtestapp.common.util.readUri
@@ -105,7 +106,7 @@ fun CameraScreenContent(
             modifier = modifier,
             onDoneButtonClick = onBackButtonClick
         )
-        is CameraScreenUiState.Error -> ErrorScreen(
+        is CameraScreenUiState.Error -> ErrorComposable(
             modifier = modifier,
             errorMessage = state.message,
             onBackButtonClick = onBackButtonClick
@@ -166,28 +167,6 @@ fun DoneScreen(
     ) {
         Text(text = "Photo saved!")
         Button(onClick = { onDoneButtonClick() }) {
-            Text(text = "Return")
-        }
-    }
-}
-
-@Composable
-fun ErrorScreen(
-    modifier: Modifier = Modifier,
-    errorMessage: String,
-    onBackButtonClick: () -> Unit
-) {
-    Column(
-        modifier = modifier
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceAround,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = errorMessage,
-            color = MaterialTheme.colorScheme.error
-        )
-        Button(onClick = { onBackButtonClick() }) {
             Text(text = "Return")
         }
     }

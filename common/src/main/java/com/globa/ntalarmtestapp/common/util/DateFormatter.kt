@@ -9,4 +9,7 @@ object DateFormatter {
 
     fun getSimpleDate(date: Long): String = dateFormat.format(date * 1000L)
     fun getExtendDate(date: Long): String = extendDateFormat.format(date * 1000L)
+
+    fun getSimpleUTFDate(date: Long): String = dateFormat.format(date)
+
 }

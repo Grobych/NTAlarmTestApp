@@ -12,10 +12,13 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DatePickerState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -29,15 +32,23 @@ import coil.compose.SubcomposeAsyncImage
 import com.globa.ntalarmtestapp.common.theme.NTAlarmTestAppTheme
 import com.globa.ntalarmtestapp.common.ui.Paddings
 import com.globa.ntalarmtestapp.common.ui.composable.BaseHeader
+import com.globa.ntalarmtestapp.common.ui.composable.DateField
 import com.globa.ntalarmtestapp.common.util.DateFormatter
 import com.globa.ntalarmtestapp.photos.api.Photo
+import java.util.Date
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhotoListScreen(
     viewModel: PhotosViewModel = hiltViewModel(),
     onPhotoClick: (Int) -> Unit
 ) {
     val uiState = viewModel.photosUiState.collectAsState()
+
+    val onDateChanged = fun(date: Long?) {
+        viewModel.onDateChanged(date)
+    }
+    val datePickerState = rememberDatePickerState()
 
     Scaffold(
         topBar = {
@@ -54,17 +65,20 @@ fun PhotoListScreen(
                 ErrorPhotoListScreen(
                     modifier = Modifier.padding(it),
                     errorMessage = state.message,
-                    onReturnButtonClick = { viewModel.fetchPhotos() }
+                    onReturnButtonClick = { viewModel.viewModelInit() }
                 )
             }
             is PhotosUiState.Done -> {
                 val photos = state.photos
+                datePickerState.setSelection(state.date)
                 DonePhotoListScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(it),
                     photos = photos,
-                    onPhotoClick = onPhotoClick
+                    datePickerState = datePickerState,
+                    onPhotoClick = onPhotoClick,
+                    onDateChanged = onDateChanged
                 )
             }
         }
@@ -91,50 +105,63 @@ private fun ErrorPhotoListScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DonePhotoListScreen(
     modifier: Modifier = Modifier,
     photos: List<Photo>,
-    onPhotoClick: (Int) -> Unit
+    datePickerState: DatePickerState,
+    onPhotoClick: (Int) -> Unit,
+    onDateChanged: (Long?) -> Unit
 ) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(3),
-        modifier = modifier.padding(Paddings.medium)
+    Column(
+        modifier = modifier
     ) {
-        items(photos.size) { index ->
-            val photo = photos[index]
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                SubcomposeAsyncImage(
-                    modifier = Modifier
-                        .size(100.dp)
-                        .padding(
-                            start = Paddings.medium,
-                            end = Paddings.medium,
-                            top = Paddings.medium
-                        )
-                        .clickable {
-                            onPhotoClick(photo.id)
-                        }
-                        .clip(MaterialTheme.shapes.medium),
-                    model = photo.path,
-                    loading = { CircularProgressIndicator() },
-                    error = {
-                        Image(
-                            painter = painterResource(id = com.globa.ntalarmtestapp.common.R.drawable.ic_broken),
-                            contentDescription = "Image broken or not found"
-                        )
-                    },
-                    contentDescription = "Photo ${photo.id}"
-                )
-                Text(text = DateFormatter.getSimpleDate(photo.date))
+        DateField(
+            datePickerState = datePickerState,
+            onDateChanged = onDateChanged
+        )
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(3),
+            modifier = Modifier.padding(Paddings.medium)
+        ) {
+            items(photos.size) { index ->
+                val photo = photos[index]
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    SubcomposeAsyncImage(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(
+                                start = Paddings.medium,
+                                end = Paddings.medium,
+                                top = Paddings.medium
+                            )
+                            .clickable {
+                                onPhotoClick(photo.id)
+                            }
+                            .clip(MaterialTheme.shapes.medium),
+                        model = photo.path,
+                        loading = { CircularProgressIndicator() },
+                        error = {
+                            Image(
+                                painter = painterResource(id = com.globa.ntalarmtestapp.common.R.drawable.ic_broken),
+                                contentDescription = "Image broken or not found"
+                            )
+                        },
+                        contentDescription = "Photo ${photo.id}"
+                    )
+                    Text(text = DateFormatter.getSimpleDate(photo.date))
+                }
             }
         }
     }
+
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
@@ -169,7 +196,12 @@ fun PhotoListScreenDonePreview() {
 
     NTAlarmTestAppTheme {
         Surface {
-            DonePhotoListScreen(photos = list, onPhotoClick = {} )
+            DonePhotoListScreen(
+                photos = list,
+                onPhotoClick = {},
+                datePickerState = rememberDatePickerState(initialSelectedDateMillis = Date().time),
+                onDateChanged = {}
+            )
         }
     }
 }

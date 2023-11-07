@@ -9,6 +9,7 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.globa.ntalarmtestapp.common.util.DateFormatter
+import com.globa.ntalarmtestapp.common.util.UriDataStore
 import com.globa.ntalarmtestapp.location.api.LocationRepository
 import com.globa.ntalarmtestapp.location.api.LocationResponse
 import com.globa.ntalarmtestapp.photodetails.api.PhotoDetails
@@ -29,7 +30,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CameraScreenViewModel @Inject constructor(
     private val photosRepository: PhotoDetailsRepository,
-    private val locationRepository: LocationRepository
+    private val locationRepository: LocationRepository,
+    private val uriDataStore: UriDataStore
 ): ViewModel() {
     private val _uiState = MutableStateFlow<CameraScreenUiState>(CameraScreenUiState.Creating)
     val uiState = _uiState.asStateFlow()
@@ -113,7 +115,9 @@ class CameraScreenViewModel @Inject constructor(
     }
 
     fun onPathChange(path: Uri) {
-        _path.value = path
+        viewModelScope.launch {
+            uriDataStore.saveUri(path)
+        }
     }
 
     private fun imageNameFlowInit() {
@@ -128,6 +132,10 @@ class CameraScreenViewModel @Inject constructor(
     }
 
     private fun pathFlowInit() {
+        uriDataStore.getUri().onEach {
+            _path.value = it
+        }.launchIn(viewModelScope)
+
         _path.onEach { path ->
             val state = uiState.value
             if (state is CameraScreenUiState.ReadyToSave) {

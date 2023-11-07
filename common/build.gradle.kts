@@ -48,6 +48,9 @@ dependencies {
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
 
+    implementation(libs.datastore.preferences)
+    implementation(libs.datastore.preferences.core)
+
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)
 }

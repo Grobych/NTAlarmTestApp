@@ -1,6 +1,7 @@
 package com.globa.ntararmtestapp.camera
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Bitmap.Config
 import android.net.Uri
@@ -94,6 +95,9 @@ fun CameraScreenContent(
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocumentTree()) {
         it?.let { uri ->
+            context.contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION + Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             viewModel.onPathChange(uri)
         }
     }

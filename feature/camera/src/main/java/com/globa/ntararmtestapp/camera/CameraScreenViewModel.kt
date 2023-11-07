@@ -40,12 +40,12 @@ class CameraScreenViewModel @Inject constructor(
     private val _location = MutableStateFlow<Location?>(null)
     private val date = Date().time/1000
     private val _imageName = MutableStateFlow("IMG${DateFormatter.getSimpleDate(date)}")
-    private val _path = MutableStateFlow<Uri?>(null)
+    private val _uri = MutableStateFlow<Uri?>(null)
 
 
     init {
         imageNameFlowInit()
-        pathFlowInit()
+        uriFlowInit()
     }
     fun onPhotoCaptured(byteArray: ByteArray) {
         viewModelScope.launch {
@@ -59,7 +59,7 @@ class CameraScreenViewModel @Inject constructor(
                         _location.value = response.location
                         _image.value = bitmap
                         CameraScreenUiState.ReadyToSave(
-                            path = _path.value,
+                            path = _uri.value,
                             bitmap = _image.value!!,
                             location = "Lat: ${response.location.latitude}; Lng: ${response.location.longitude}",
                             name = _imageName.value,
@@ -71,7 +71,7 @@ class CameraScreenViewModel @Inject constructor(
         }
     }
     fun onSaveButtonClick(context: Context) {
-        val uri = _path.value ?: return
+        val uri = _uri.value ?: return
         if (uiState.value is CameraScreenUiState.ReadyToSave) {
             viewModelScope.launch {
                 val image = _image.value
@@ -114,9 +114,9 @@ class CameraScreenViewModel @Inject constructor(
         _imageName.value = name
     }
 
-    fun onPathChange(path: Uri) {
+    fun onUriChange(uri: Uri) {
         viewModelScope.launch {
-            uriDataStore.saveUri(path)
+            uriDataStore.saveUri(uri)
         }
     }
 
@@ -131,12 +131,12 @@ class CameraScreenViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun pathFlowInit() {
+    private fun uriFlowInit() {
         uriDataStore.getUri().onEach {
-            _path.value = it
+            _uri.value = it
         }.launchIn(viewModelScope)
 
-        _path.onEach { path ->
+        _uri.onEach { path ->
             val state = uiState.value
             if (state is CameraScreenUiState.ReadyToSave) {
                 _uiState.value = state.copy(

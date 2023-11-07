@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_permission_rationale_1">The camera is important for this app. Please grant the permission.</string>
+    <string name="camera_permission_rationale_2">Camera permission required for this feature to be available. Please grant the permission</string>
+    <string name="permission_button_text">Grant permission</string>
+    <string name="location_permission_rationale">App uses user location data during creating photo and requires permissions.</string>
+    <string name="photos_tab_label">Photos</string>
+    <string name="camera_tab_label">Add Photo</string>
+    <string name="map_tab_label">Map</string>
+    <string name="return_button_text">Return</string>
+    <string name="date_picker_label">Search by date</string>
+    <string name="date_picker_confirm_button_text">Confirm</string>
+    <string name="date_picker_cancel_button_text">Cancel</string>
+</resources>

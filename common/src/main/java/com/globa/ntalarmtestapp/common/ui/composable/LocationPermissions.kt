@@ -8,6 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.globa.ntalarmtestapp.common.R
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 
@@ -34,9 +36,9 @@ fun LocationPermissions(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "App requires permissions")
+            Text(text = stringResource(R.string.location_permission_rationale))
             Button(onClick = { locationPermissionsState.launchMultiplePermissionRequest() }) {
-                Text(text = "Grant permissions")
+                Text(text = stringResource(id = R.string.permission_button_text))
             }
         }
 

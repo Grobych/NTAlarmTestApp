@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.globa.ntalarmtestapp.common.R
 
 @Composable
 fun ErrorComposable(
@@ -27,7 +29,7 @@ fun ErrorComposable(
             color = MaterialTheme.colorScheme.error
         )
         Button(onClick = { onBackButtonClick() }) {
-            Text(text = "Return")
+            Text(text = stringResource(R.string.return_button_text))
         }
     }
 }

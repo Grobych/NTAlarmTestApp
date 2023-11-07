@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.globa.ntalarmtestapp.common.R
 import com.globa.ntalarmtestapp.common.ui.Paddings
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
@@ -36,17 +38,16 @@ fun CameraPermission(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val textToShow = if (cameraPermissionState.status.shouldShowRationale) {
-                "The camera is important for this app. Please grant the permission."
+                stringResource(R.string.camera_permission_rationale_1)
             } else {
-                "Camera permission required for this feature to be available. " +
-                        "Please grant the permission"
+                stringResource(R.string.camera_permission_rationale_2)
             }
             Text(
                 text = textToShow,
                 modifier = Modifier.padding(Paddings.large)
             )
             Button(onClick = { cameraPermissionState.launchPermissionRequest() }) {
-                Text("Request permission")
+                Text(stringResource(R.string.permission_button_text))
             }
         }
     }

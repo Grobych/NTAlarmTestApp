@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.globa.ntalarmtestapp.common.R
 import com.globa.ntalarmtestapp.common.theme.NTAlarmTestAppTheme
@@ -58,7 +59,7 @@ fun DateField(
         },
         label = {
             Text(
-                text = "Search by date"
+                text = stringResource(R.string.date_picker_label)
             )
         }
     )
@@ -74,12 +75,12 @@ fun DateField(
                         onDateChanged(datePickerState.selectedDateMillis)
                     }
                 ) {
-                    Text(text = "Confirm")
+                    Text(text = stringResource(R.string.date_picker_confirm_button_text))
                 } },
             dismissButton = {
                 Button(
                     onClick = { showDatePicker = false }) {
-                    Text(text = "Cancel")
+                    Text(text = stringResource(R.string.date_picker_cancel_button_text))
                 }
             },
             content = {

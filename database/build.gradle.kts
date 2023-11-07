@@ -37,9 +37,6 @@ dependencies {
     implementation(libs.hilt.core)
     kapt(libs.hilt.compiler)
 
-    implementation(libs.paging.core)
-    implementation(libs.paging.room)
-
     implementation(libs.room)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.room.compiler)

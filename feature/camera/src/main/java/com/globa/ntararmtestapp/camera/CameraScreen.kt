@@ -34,6 +34,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
@@ -57,7 +58,7 @@ fun CameraScreen(
         CameraPermission {
             Scaffold(
                 topBar = {
-                    BaseHeader(text = "Add photo")
+                    BaseHeader(text = stringResource(R.string.add_photo_header))
                 }
             ) {
                 CameraScreenContent(
@@ -123,7 +124,7 @@ fun CameraScreenContent(
         is CameraScreenUiState.ReadyToSave -> ReadyToSaveScreen(
             modifier = modifier,
             bitmap = state.bitmap,
-            path = state.path?.toString()?:"Unselected",
+            path = state.path?.toString()?: stringResource(R.string.unselected_image_folder_text),
             imageName = state.name,
             location = state.location,
             date = state.date,
@@ -133,7 +134,7 @@ fun CameraScreenContent(
         )
         CameraScreenUiState.Saving -> ProcessingScreen(
             modifier = modifier,
-            message = "Saving photo..."
+            message = stringResource(R.string.saving_photo_text)
         )
     }
 }
@@ -146,7 +147,8 @@ fun TakingPhoto(
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
         context,
-        "com.globa.ntalarmtestapp.provider", file
+        "com.globa.ntalarmtestapp.provider",
+        file
     )
 
     val cameraLauncher =
@@ -170,9 +172,9 @@ fun DoneScreen(
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Photo saved!")
+        Text(text = stringResource(R.string.photo_saved_text))
         Button(onClick = { onDoneButtonClick() }) {
-            Text(text = "Return")
+            Text(text = stringResource(R.string.return_button_text))
         }
     }
 }
@@ -236,7 +238,7 @@ fun ReadyToSaveScreen(
             singleLine = true,
             readOnly = true,
             label = {
-                Text(text = "Path:")
+                Text(text = stringResource(R.string.path_label))
             },
             trailingIcon = {
                 Icon(
@@ -253,7 +255,7 @@ fun ReadyToSaveScreen(
             onValueChange = { onImageNameChange(it) },
             singleLine = true,
             label = {
-                Text(text = "Image name")
+                Text(text = stringResource(R.string.image_name_text))
             }
         )
         Text(
@@ -265,11 +267,11 @@ fun ReadyToSaveScreen(
             text = date
         )
         Button(
-            enabled = path != "Unselected",
+            enabled = path != stringResource(R.string.unselected_image_folder_text), //TODO: pass boolean
             modifier = Modifier.padding(top = Paddings.extraLarge),
             onClick = { onSendButtonClick() }
         ) {
-            Text(text = "Save")
+            Text(text = stringResource(R.string.save_button_text))
         }
     }
 }

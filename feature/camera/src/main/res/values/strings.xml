@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_photo_header">Add photo</string>
+    <string name="saving_photo_text">Saving photo…</string>
+    <string name="unselected_image_folder_text">Directory not selected</string>
+    <string name="image_name_text">Image name</string>
+    <string name="save_button_text">Save</string>
+    <string name="path_label">Path:</string>
+    <string name="return_button_text">Return</string>
+    <string name="photo_saved_text">Photo saved!</string>
+</resources>

@@ -7,6 +7,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.globa.ntalarmtestapp.common.ui.composable.BaseHeader
 import com.globa.ntalarmtestapp.common.ui.composable.LocationPermissions
@@ -24,7 +25,7 @@ fun MapScreen(
 ) {
     Scaffold(
         topBar = {
-            BaseHeader(text = "Map")
+            BaseHeader(text = stringResource(R.string.map_header_text))
         }
     ) {
         LocationPermissions {

@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,19 +54,19 @@ fun PhotoDetailsScreen(
             onDismissRequest = { viewModel.onRemoveDecline() },
             confirmButton = {
                 Button(onClick = { viewModel.onRemoveAccept() }) {
-                    Text(text = "Confirm")
+                    Text(text = stringResource(R.string.confirm_button_text))
                 }
             },
             dismissButton = {
                 Button(onClick = { viewModel.onRemoveDecline() }) {
-                    Text(text = "Cancel")
+                    Text(text = stringResource(R.string.cancel_button_text))
                 }
             },
             title = {
-                Text(text = "Confirm file removing")
+                Text(text = stringResource(R.string.remove_dialog_title))
             },
             text = {
-                Text(text = "Are you sure to delete this photo from database?")
+                Text(text = stringResource(R.string.remove_dialog_text))
             }
         )
     }
@@ -84,7 +85,11 @@ fun PhotoDetailsScreen(
         ) {
             when (val state = uiState.value) {
                 PhotoDetailsScreenUiState.Deleted -> {
-                    Toast.makeText(context,"Photo removed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        stringResource(R.string.photo_removed_toast_text),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     onBackButtonClick()
                 }
                 is PhotoDetailsScreenUiState.Done -> {
@@ -183,7 +188,7 @@ private fun Header(
             Icon(painter = painterResource(id = R.drawable.ic_back), contentDescription = "Back")
         }
         Text(
-            text = "Photo Info",
+            text = stringResource(R.string.photo_details_header_text),
             style = MaterialTheme.typography.titleMedium
         )
         IconButton(onClick = { onRemoveButtonCLick() }) {

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,6 +45,7 @@ fun LocationPermissions(
             Text(text = stringResource(R.string.location_permission_rationale))
             Button(
                 modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.small,
                 onClick = { locationPermissionsState.launchMultiplePermissionRequest() }) {
                 Text(text = stringResource(id = R.string.permission_button_text))
             }

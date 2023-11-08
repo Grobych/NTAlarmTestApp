@@ -35,7 +35,8 @@ fun ErrorComposable(
         )
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = { onBackButtonClick() }
+            onClick = { onBackButtonClick() },
+            shape = MaterialTheme.shapes.small
         ) {
             Text(text = stringResource(R.string.return_button_text))
         }

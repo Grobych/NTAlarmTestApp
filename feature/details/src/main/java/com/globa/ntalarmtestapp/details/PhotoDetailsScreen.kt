@@ -55,12 +55,18 @@ fun PhotoDetailsScreen(
         AlertDialog(
             onDismissRequest = { viewModel.onRemoveDecline() },
             confirmButton = {
-                Button(onClick = { viewModel.onRemoveAccept() }) {
+                Button(
+                    shape = MaterialTheme.shapes.small,
+                    onClick = { viewModel.onRemoveAccept() }
+                ) {
                     Text(text = stringResource(R.string.confirm_button_text))
                 }
             },
             dismissButton = {
-                Button(onClick = { viewModel.onRemoveDecline() }) {
+                Button(
+                    shape = MaterialTheme.shapes.small,
+                    onClick = { viewModel.onRemoveDecline() }
+                ) {
                     Text(text = stringResource(R.string.cancel_button_text))
                 }
             },

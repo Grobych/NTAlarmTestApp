@@ -168,12 +168,19 @@ fun DoneScreen(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(Paddings.large),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(R.string.photo_saved_text))
-        Button(onClick = { onDoneButtonClick() }) {
+        Text(
+            text = stringResource(R.string.photo_saved_text)
+        )
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { onDoneButtonClick() },
+            shape = MaterialTheme.shapes.small
+            ) {
             Text(text = stringResource(R.string.return_button_text))
         }
     }
@@ -186,11 +193,13 @@ fun ProcessingScreen(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(Paddings.large),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
+            modifier = Modifier.fillMaxWidth(),
             text = message,
             color = MaterialTheme.colorScheme.error
         )
@@ -216,11 +225,16 @@ fun ReadyToSaveScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .padding(
+                start = Paddings.large,
+                end = Paddings.large,
+                bottom = Paddings.large
+            )
             .verticalScroll(
                 state = scrollState,
                 enabled = true
             ),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(Paddings.medium),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
@@ -228,11 +242,10 @@ fun ReadyToSaveScreen(
             contentDescription = "Photo to upload",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Paddings.medium)
-                .clip(MaterialTheme.shapes.medium)
-            ,
+                .clip(MaterialTheme.shapes.medium),
         )
         TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = path,
             onValueChange = {},
             singleLine = true,
@@ -248,27 +261,31 @@ fun ReadyToSaveScreen(
                     ,
                     painter = painterResource(id = R.drawable.ic_folder),
                     contentDescription = "Select folder")
-            }
+            },
+            shape = MaterialTheme.shapes.small
         )
         TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = imageName,
             onValueChange = { onImageNameChange(it) },
             singleLine = true,
             label = {
                 Text(text = stringResource(R.string.image_name_text))
-            }
+            },
+            shape = MaterialTheme.shapes.small
         )
         Text(
-            modifier = Modifier.padding(Paddings.medium),
+            modifier = Modifier.fillMaxWidth(),
             text = location
         )
         Text(
-            modifier = Modifier.padding(Paddings.medium),
+            modifier = Modifier.fillMaxWidth(),
             text = date
         )
         Button(
             enabled = path != stringResource(R.string.unselected_image_folder_text), //TODO: pass boolean
-            modifier = Modifier.padding(top = Paddings.extraLarge),
+            modifier = Modifier.fillMaxWidth().padding(top = Paddings.extraLarge),
+            shape = MaterialTheme.shapes.small,
             onClick = { onSendButtonClick() }
         ) {
             Text(text = stringResource(R.string.save_button_text))

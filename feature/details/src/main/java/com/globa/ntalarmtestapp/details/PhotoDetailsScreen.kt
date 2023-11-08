@@ -37,6 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.SubcomposeAsyncImage
 import com.globa.ntalarmtestapp.common.theme.NTAlarmTestAppTheme
+import com.globa.ntalarmtestapp.common.ui.DPs.headerHeight
+import com.globa.ntalarmtestapp.common.ui.Paddings
 import com.globa.ntalarmtestapp.common.ui.composable.ErrorComposable
 
 @Composable
@@ -126,15 +128,20 @@ private fun PhotoDetailsComposable(
     location: String
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceEvenly,
+        modifier = modifier
+            .fillMaxSize()
+            .padding(
+                start = Paddings.large,
+                end = Paddings.large,
+                bottom = Paddings.large
+            ),
+        verticalArrangement = Arrangement.spacedBy(Paddings.medium),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         SubcomposeAsyncImage(
             modifier = Modifier
                 .requiredWidth(360.dp)
                 .requiredHeight(480.dp)
-                .padding(10.dp)
                 .clip(MaterialTheme.shapes.medium),
         model = imageUri,
         contentDescription = "Photo",
@@ -145,7 +152,10 @@ private fun PhotoDetailsComposable(
                 contentDescription = "Image broken or not found"
             )
         })
-        Column {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(Paddings.medium),
+            horizontalAlignment = Alignment.Start
+        ) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -157,15 +167,13 @@ private fun PhotoDetailsComposable(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.background),
-                text = date,
-                textAlign = TextAlign.Center
+                text = "Date: $date"
             )
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.background),
-                text = location,
-                textAlign = TextAlign.Center
+                text = "Location: $location"
             )
         }
     }
@@ -180,7 +188,8 @@ private fun Header(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(60.dp),
+            .padding(start = Paddings.large, end = Paddings.large)
+            .height(headerHeight),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

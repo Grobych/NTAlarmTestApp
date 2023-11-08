@@ -189,7 +189,9 @@ private fun Header(
             style = MaterialTheme.typography.titleMedium
         )
         IconButton(
-            modifier = Modifier.align(Alignment.CenterEnd),
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = Paddings.large),
             onClick = { onMapIconClick() }
         ) {
             Icon(painter = painterResource(id = com.globa.ntalarmtestapp.common.R.drawable.ic_map_marker), contentDescription = "Remove")

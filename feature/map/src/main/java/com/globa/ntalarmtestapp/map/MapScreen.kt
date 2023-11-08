@@ -3,12 +3,15 @@ package com.globa.ntalarmtestapp.map
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.globa.ntalarmtestapp.common.ui.Paddings
 import com.globa.ntalarmtestapp.common.ui.composable.BaseHeader
 import com.globa.ntalarmtestapp.common.ui.composable.LocationPermissions
 import com.globa.ntalarmtestapp.photolocations.api.PhotoLocation
@@ -47,10 +50,14 @@ fun MapScreenContent(
     onMarkerCLick: (Int) -> Unit
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier.padding(
+            start = Paddings.large,
+            end = Paddings.large,
+            bottom = Paddings.large
+        )
     ) {
         GoogleMap(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().clip(MaterialTheme.shapes.medium),
             properties = MapProperties(isMyLocationEnabled = true),
         ) {
             locations.forEach {photoLocation ->

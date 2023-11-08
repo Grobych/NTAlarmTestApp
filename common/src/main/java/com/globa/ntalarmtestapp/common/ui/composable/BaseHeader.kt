@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.globa.ntalarmtestapp.common.ui.DPs.headerHeight
 
 @Composable
 fun BaseHeader(
@@ -19,7 +19,7 @@ fun BaseHeader(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(60.dp),
+            .height(headerHeight),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {

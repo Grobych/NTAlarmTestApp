@@ -67,7 +67,11 @@ fun NavController(
             composable(
                 route = Routes.PhotoList.name
             ) {
-                PhotoListScreen(onPhotoClick = navigateToDetails)
+                PhotoListScreen(
+                    onPhotoClick = navigateToDetails,
+                    onMapIconClick = navigateToMap,
+                    onCameraButtonClick = navigateToCamera
+                )
             }
             composable(
                 route = "${Routes.PhotoDetails}?photoId={photoId}",
